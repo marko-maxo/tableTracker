@@ -2,7 +2,7 @@
 Project: Tracking restaurant orders
 
 This project represents a basic CRUD app built using Django and DRF.
-The frontend is build using HTML/CSS/JS with jQuery (almost no styling has been done).
+The frontend is built using HTML/CSS/JS with jQuery (almost no styling has been done).
 
 The project is based on a specific restaurant with 16 tables with a certain layout, so the frontend and backend are design so that it fits that specific setup (no dynamic layout creation has been implemented).
 
