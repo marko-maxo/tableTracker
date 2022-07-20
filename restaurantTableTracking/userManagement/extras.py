@@ -1,6 +1,7 @@
 import jwt
 import time
 from django.contrib.auth.models import User
+from rest_framework import exceptions
 
 def generate_key_for_user(user, secret_key):
     user_data = {
@@ -22,6 +23,8 @@ def token_check(token, secret_key):
 def token_user_check(token, secret_key):
     try:
         data = jwt.decode(token, secret_key, algorithms=['HS256'])
+        if data["exp"] < time.time():
+            return 1
         return User.objects.get(id=data['id'])
     except Exception as e:
         print(e)
