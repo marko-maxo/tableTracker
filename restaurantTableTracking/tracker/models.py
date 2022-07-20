@@ -12,22 +12,22 @@ import time
 
 
 class TableOptions(models.IntegerChoices):
-    UGAO_TV = 0, "Ugao kod TV-a"
-    UNUTRA_1 = 1, "Unutra 1"
-    UNUTRA_2 = 2, "Unutra 2"
-    UNUTRA_3 = 3, "Unutra 3"
-    UNUTRA_4 = 4, "Unutra 4"
-    UNUTRA_5 = 5, "Unutra 5"
-    SANK_1 = 6, "Sank 1"
-    SANK_2 = 7, "Sank 2"
-    SANK_3 = 8, "Sank 3"
-    ISPRED_VRATA = 9, "Ispred vrata"
-    BASTA_LEVO_1 = 10, "Basta, od levo 1 (skroz levo)"
-    BASTA_LEVO_2 = 11, "Basta, od levo 2"
-    BASTA_LEVO_3 = 12, "Basta, od levo 3"
-    BASTA_LEVO_4 = 13, "Basta, od levo 4"
-    BASTA_LEVO_5 = 14, "Basta, od levo 5 (skroz desno)"
-    BEZ_STOLA = 15, "Bez stola"
+    CORNER_TV = 0, "Corner tv"
+    IN_1 = 1, "Inside 1"
+    IN_2 = 2, "Inside 2"
+    IN_3 = 3, "Inside 3"
+    IN_4 = 4, "Inside 4"
+    IN_5 = 5, "Inside 5"
+    BAR_1 = 6, "Bar 1"
+    BAR_2 = 7, "Bar 2"
+    BAR_3 = 8, "Bar 3"
+    FRONT_DOOR = 9, "Front door table"
+    OUT_1 = 10, "Out 1 (first one on the left)"
+    OUT_2 = 11, "Out 2"
+    OUT_3 = 12, "Out 3"
+    OUT_4 = 13, "Out 4"
+    OUT_5 = 14, "Out 5 (first one on the right)"
+    NO_TABLE = 15, "Without a table"
 
 # Create your models here.
 class Product(models.Model):
