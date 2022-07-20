@@ -39,7 +39,7 @@ class Product(models.Model):
         return self.name
 
 class Table(models.Model):
-    table_number = models.IntegerField(null=False, default=TableOptions.BEZ_STOLA, choices=TableOptions.choices)
+    table_number = models.IntegerField(null=False, default=TableOptions.NO_TABLE, choices=TableOptions.choices)
     completed = models.BooleanField(default=False)
     price = models.FloatField(null=False, default=0)
     timestamp = models.FloatField(null=True, blank=True)
