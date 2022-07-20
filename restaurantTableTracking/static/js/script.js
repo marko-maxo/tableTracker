@@ -1,5 +1,5 @@
-// const host = "http://localhost:8000";
-const host = "http://192.168.1.3";
+const host = "http://localhost:8000";
+// const host = "http://192.168.1.3";
 // const host = "http://localhost:8000";
 let loggedIn = false;
 

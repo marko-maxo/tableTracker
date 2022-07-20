@@ -16,7 +16,7 @@ Flow:
 
 
 API endpoints:
-default host is localhost:8000 (127.0.0.1:8000), but it can be changed with runserver command for the backend and the edit in the script.js file (first line) for the frontend.
+Default host is localhost:8000 (127.0.0.1:8000), but it can be changed with runserver command for the backend and the edit in the script.js file (first line) for the frontend.
 
 - AUTH
     - POST -> [host]/api/user/login/ -> Sign in to get JWT
@@ -34,7 +34,7 @@ default host is localhost:8000 (127.0.0.1:8000), but it can be changed with runs
 
 There are of course serializers Table, Order and Product models.
 
-The database is set to postgres in base_settings.py file, but that could be changed if needed.
+The database is set to sqlite in base_settings.py file, but that could be changed if needed. Create a settings.py file based on base_settings.py
 
 ## Running the project
 
@@ -58,10 +58,13 @@ The database is set to postgres in base_settings.py file, but that could be chan
     - And running   
     ```
     from tracker.models import Table
-        for i in range(16):
+    for i in range(16):
         Table.objects.create(table_number=i)
     ```
 6. After that you can add the products on the admin page
+    1. `python manage.py runserver`
+    2. localhost:8000/admin
+    3. Products -> Add as many as you like
 7. Run the server and enjoy
 
     `python manage.py runserver` or `python manage.py runserver 0.0.0.0:80`
