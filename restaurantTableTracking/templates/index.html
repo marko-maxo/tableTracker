@@ -1,0 +1,262 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant tracker</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <script src="{% static 'js/jquery.js' %}" defer></script>
+    <script src="{% static 'js/script.js' %}" defer></script>
+
+</head>
+<body>
+  <div id="page_content">
+    <div id="login_box">
+        <form id="login_form">
+            <input type="text" name="username" id="username_input" placeholder="Username" required>
+            <input type="password" name="password" id="password_input" placeholder="Password" required>
+            <button id="login_button">LOGIN</button>
+        </form>
+        <br>
+    </div>
+    <div id="loggedInBox">
+        <h4>Logged in as: <span id="user_info_span"></span></h4>
+        <button onclick="sendLogout()">LOGOUT</button>
+    </div>
+    <h2>Table setup</h2>
+    <button id="today_info_button" onclick="todayInfo()" style="margin-bottom: 10px;">Get the balance for today</button>
+    <div class="loader"></div>
+    <div id="today_info" style="display: none;">
+      <h4 style="margin-top: -5px;">Total tables: <span id="total_tables"></span></h4>
+      <h4 style="margin-top: -20px;">Total revenue: <span id="total_revenue"></span> $</h4>
+      <h4 style="margin-top: -20px;">Total tips: <span id="total_tips"></span> $</h4>
+      <button onclick="$('#today_info').css('display', 'none')" style="margin-bottom: 10px; margin-top: -15px; display:block;">Close</button>
+    </div>
+    <div class="tg-wrap"><table class="tg" id="restaurantTable">
+        <tbody>
+          <tr>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+          </tr>
+          <tr>
+            <td id="table_10" class="tg-06j3 table_button">10</td>
+            <td class="tg-kwiq"></td>
+            <td id="table_11" class="tg-06j3 table_button">11</td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td id="table_12" class="tg-06j3 table_button">12</td>
+            <td class="tg-kwiq"></td>
+            <td id="table_13" class="tg-06j3 table_button">13</td>
+            <td class="tg-kwiq"></td>
+            <td id="table_14" class="tg-06j3 table_button">14</td>
+          </tr>
+          <tr>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+          </tr>
+          <tr>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td id="table_9" class="tg-06j3 table_button">9</td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+          </tr>
+          <tr style="background-color: red;">
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-n9g5"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+          </tr>
+          <tr>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td id="table_3" class="tg-06j3 table_button">3</td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-n9g5"></td>
+            <td class="tg-n9g5"></td>
+            <td id="table_4" class="tg-06j3 table_button">4</td>
+          </tr>
+          <tr>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-n9g5"></td>
+            <td class="tg-n9g5"></td>
+            <td class="tg-kwiq"></td>
+          </tr>
+          <tr>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td id="table_2" class="tg-06j3 table_button">2</td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td id="table_5" class="tg-06j3 table_button">5</td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+          </tr>
+          <tr>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+          </tr>
+          <tr>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td id="table_8" class="tg-06j3 table_button">8</td>
+            <td class="tg-kwiq"></td>
+          </tr>
+          <tr>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td id="table_1" class="tg-06j3 table_button">1</td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td id="table_7" class="tg-06j3 table_button">7</td>
+            <td class="tg-symt"></td>
+            <td class="tg-symt"></td>
+            <td class="tg-symt"></td>
+          </tr>
+          <tr>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-symt"></td>
+            <td class="tg-symt"></td>
+            <td class="tg-symt"></td>
+          </tr>
+          <tr>
+            <td class="tg-n9g5"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td id="table_6" class="tg-06j3 table_button">6</td>
+            <td class="tg-symt"></td>
+            <td id="table_15" class="tg-hebq table_button">15</td>
+            <td class="tg-symt"></td>
+          </tr>
+          <tr>
+            <td class="tg-n9g5"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-symt"></td>
+            <td class="tg-symt"></td>
+            <td class="tg-symt"></td>
+          </tr>
+          <tr>
+            <td id="table_0" class="tg-06j3 table_button">0</td>
+            <td class="tg-n9g5"></td>
+            <td class="tg-n9g5"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-kwiq"></td>
+            <td class="tg-symt"></td>
+            <td class="tg-symt"></td>
+            <td class="tg-symt"></td>
+          </tr>
+        </tbody>
+        </table></div>
+        <div id="table_information">
+            <h3>Table information</h3>
+            <h4>Table number: <span id="table_number"></span></h4>
+            <h4>Current price: <span id="table_price"></span></h4>
+            <button id="open_box" onclick="openBox()">Open end table box</button>
+            <h3>Add order <input type="text" placeholder="Product name" id="adding_product" name="adding_product"></h3>
+            <table style="border: 1px solid black">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Add</th>
+                    </tr>
+                </thead>
+                <tbody id="product_table_body">
+                </tbody>
+            </table>
+            <h4>Table orders:</h4>
+            <ol id="table_orders">
+            </ol>
+        </div>
+      </div>
+        <div id="end_table_modal">
+            <button onclick="closeBox()">Close</button>
+            <h3 style="text-align: center;">Ending the table</h3>
+            <h4>Table number: <span id="end_table_number">3</span></h4>
+            <h4>Total price: <span id="end_table_price">1400</span>$</h4>
+            <form id="end_table_form">
+              <h4>Paid with: <input type="number" id="end_table_given" name="end_table_given" required value="0" step="5" style="width: 70px;" min="100"></h4>
+              <button id="end_table_button" value="3" name="end_table_button">END THE TABLE</button>
+            </form>
+            <h4>Orders:</h4>
+            <ol id="end_table_orders">
+              <li>Limunada, 195</li>
+              <li>Limunada, 195</li>
+              <li>Limunada, 195</li>
+            </ol>
+        </div>
+</body>
+</html>
