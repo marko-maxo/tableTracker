@@ -9,7 +9,7 @@ The project is based on a specific restaurant with 16 tables with a certain layo
 Flow:
 
 1. User goes to the website
-2. In order to to anything he needs to sign in
+2. In order to do anything they needs to sign in
     - JWT cookie is saved in the browser and it lasts 24 hours
     - Sign in box will only be visible if user is not logged in, the check will happen whenever a user loads a page (everything is on one page, so probably not very often)
 3. They can check tables, search products, add/remove orders, check the current day's balance and end the table. The total revenue and tips are calculated and shown on the page
